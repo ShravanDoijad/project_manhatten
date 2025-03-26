@@ -1,5 +1,5 @@
 const Product = require("../model/productModel")
-
+const Seller = require("../model/authModel")
 const cloudinary = require("../cloudinary")
 const addProducts = async (req, res) => {
     
@@ -23,8 +23,7 @@ const addProducts = async (req, res) => {
         
         let imageUrl = (images.length >0)?
         await Promise.all(images.map(async(item)=>{
-                console.log("item", item);
-                
+ 
             let result = await cloudinary.uploader.upload(item.path, {resource_type: "image"})
             return result.secure_url
         })):[]
@@ -45,4 +44,41 @@ const addProducts = async (req, res) => {
     }
 }
 
-module.exports = {addProducts};
+
+const listProducts = async(req, res) => {
+    try {
+        const {sellerId} = req.body;
+        const products = await Product.find({sellerId: sellerId})
+        console.log(products);
+        return res.status(200).json({products})
+        
+        
+        
+    } catch (error) {
+        return res.status(400).json({msg: "can list product", error})
+    }
+}
+
+const removeProduct = async (req, res) => {
+  try {
+   
+    const pro= await Product.findByIdAndDelete(req.body._id)
+    console.log(pro);
+    
+    res.status(200).json({msg:"product removed successfully"})
+  } catch (error) {
+    return res.status(400).json({msg: error})
+  }
+}
+
+const editProduct = async(req, res)=>{
+    try {
+        const {productId, price, shippingCost, description, availabilityStatus, discountPrice, avgRating} = req.body
+        await Product.findByIdAndUpdate(productId, { price, shippingCost, description, availabilityStatus, discountPrice, avgRating})
+        return res.status(200).json({msg: 'product updated successfully'})
+    } catch (error) {
+        res.status(500).json({msg: error})
+    }
+}
+
+module.exports = {addProducts,editProduct ,listProducts, removeProduct};

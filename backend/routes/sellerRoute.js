@@ -1,7 +1,7 @@
 const express = require("express")
 const sellerRouter =  express.Router()
 const {body} = require("express-validator")
-const {registerSeller, loginSeller } = require("../controller/authController")
+const {registerSeller, loginSeller, logoutSeller, sellerProfile } = require("../controller/authController")
 
 sellerRouter.post("/sellRegister",
 [body('name').isLength({min: 2}).withMessage("Name must be at least 2 characters long"),
@@ -16,5 +16,11 @@ sellerRouter.post("/sellLogin",
      body('password').isLength({min:3}).withMessage("password must be at least 3 characters long")  
     
     ], loginSeller)
+
+ sellerRouter.post("/logoutseller",
+    logoutSeller
+ )
+ 
+ sellerRouter.get("/sellerProfile", sellerProfile)
 
  module.exports = sellerRouter   
