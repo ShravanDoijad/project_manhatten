@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { User } = require("./authModel");
 
 const productSchema = new mongoose.Schema({
     name: { type: String, required: true, trim: true },
@@ -11,9 +12,19 @@ const productSchema = new mongoose.Schema({
     sellerId:{ type: String, required: true},
     sellerName: {type: String, required: true},
     availabilityStatus: { type: Boolean, default: true },
+    status:{
+        type:String,
+        enum:["pending" ,"approved", "rejected"],
+        default:"pending"
+    },
     shippingCost: { type: Number, default: 0 },
     returnPolicy: { type: String, default: "No returns" },
     avgRating: { type: Number, default: 0, min: 0, max: 5 },
+    review: {
+        type:Object,
+        default:{}
+
+    },
     date:{type: Date, default: Date.now(), required:true}
 }, { timestamps: true });
 

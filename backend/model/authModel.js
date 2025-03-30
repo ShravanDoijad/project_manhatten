@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema({
         minLength:[6, "Email must be at least 6 characters long"]
     }, 
     password:{type:String, required:true, minlength:[8,"Password must be atleast 8 characters long."] },
+    cartData: ({type: Object, default: {}}),
 })
 
 const sellerSchema = new mongoose.Schema({
