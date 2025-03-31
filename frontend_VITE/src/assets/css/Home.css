@@ -6,7 +6,7 @@ body {
 
 /* Navbar Styling */
 .navbar {
-    background-color: #fae7c9 !important;
+    position: absolute;
     padding: 10px 20px;
 }
 
@@ -19,23 +19,16 @@ body {
     color: #fe0707 !important;
 }
 
+
 .navbar-brand img {
     width: 40px;
     height: 40px;
     margin-right: 10px;
 }
 
-.navbar-nav {
-    margin: auto;
-}
 
-.navbar-nav .nav-item {
-    margin: 0 15px;
-}
 
-.navbar-light .navbar-nav .nav-link {
-    color: black !important;
-}
+
 
 .navbar-light .navbar-nav .nav-link:hover {
     color: #007bff !important;
@@ -154,7 +147,7 @@ p {
     background-color:#c6775f;
 }
 .container-backimage {
-    background-image: url(/Images/back1.jpg);
+    background-image: url("../Images/back1.jpg");
     background-size: cover; /* Ensures the image covers the container */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents repetition */
@@ -167,7 +160,7 @@ p {
     width: 100%;
     height:100px;
     margin-top: 30px;
-    background-color: rgb(138, 98, 41); /* Slightly transparent background */
+     /* Slightly transparent background */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -194,7 +187,7 @@ p {
 
 /* Background styling */
 .products-section {
-    background-color: #f7f1e3; /* Light beige color */
+    /* Light beige color */
     padding: 50px 0;
 }
 
@@ -242,3 +235,26 @@ p {
     background-color: #343a40;
 }
 
+.about-section {
+    
+    background-size: cover; /* Ensures the image covers the container */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents repetition */
+    min-height: 100vh; /* Ensures it takes the full viewport height */
+    width: 100%; /* Ensures full width */
+}
+
+.about-list {
+    list-style: none;
+    padding: 0;
+}
+
+.about-list li {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.about-img {
+    max-width: 100%;
+    border-radius: 10px;
+}
