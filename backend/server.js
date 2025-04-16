@@ -50,7 +50,7 @@ const server = require("http").createServer(app)
 
 const io = new Server(server,{
     cors: {
-        origin: [`${frontendUrl}`],
+        origin: allowedOrigins,
         credentials: true
     }
 })
@@ -68,3 +68,4 @@ io.on("connection", (socket)=>{
 
 server.listen(3000, () => { console.log('Server is running on port 3000') });
 
+module.exports = server;
