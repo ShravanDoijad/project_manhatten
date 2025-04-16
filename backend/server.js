@@ -12,9 +12,10 @@ const sellerRouter = require("./routes/sellerRoute")
 const productRouter = require("./routes/productRoute");
 const cartRouter = require('./routes/cartRoute');
 const orderRouter = require('./routes/orderRoute');
-
+const frontendUrl = process.env.FRONTEND_URL
+const adminPanel = process.env.ADMINPANEL_URL
 app.use(cors({
-    origin: ['https://project-manhatten-frontend.vercel.app'],
+    origin: [`${frontendUrl}`],
     credentials:true
 }
     
@@ -31,7 +32,7 @@ const server = require("http").createServer(app)
 
 const io = new Server(server,{
     cors: {
-        origin: ['https://project-manhatten-frontend.vercel.app'],
+        origin: [`${frontendUrl}`],
         credentials: true
     }
 })
