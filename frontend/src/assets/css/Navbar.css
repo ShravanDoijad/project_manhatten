@@ -1,0 +1,50 @@
+.menu-icon {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: black; 
+    font-size: 28px;
+  }
+  
+ 
+  .dropdown-menu {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: white;
+    color: black;
+    width: 250px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+  
+ 
+  .close-menu {
+    align-self: flex-end;
+    cursor: pointer;
+    font-size: 20px;
+    color: black;
+    margin-bottom: 10px;
+  }  
+
+  .menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    transition: 0.3s;
+  }
+  
+  .menu-item:hover {
+    background-color: #f4f4f4;
+  }
+  
+  .menu-icon {
+    margin-right: 10px;
+  }

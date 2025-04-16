@@ -21,8 +21,9 @@ const productSchema = new mongoose.Schema({
     returnPolicy: { type: String, default: "No returns" },
     avgRating: { type: Number, default: 0, min: 0, max: 5 },
     review: {
-        type:Object,
-        default:{}
+        type:Array,
+        default:[] 
+        
 
     },
     date:{type: Date, default: Date.now(), required:true}

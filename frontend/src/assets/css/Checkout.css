@@ -1,0 +1,48 @@
+body {
+    background-color: #fafaf7;
+    font-family: Arial, sans-serif;
+  }
+  
+
+  
+
+  
+  form input {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  form input:focus {
+    border-color: #000;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  }
+  
+  button.btn-dark {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 30px;
+    border-radius: 5px;
+    font-weight: 500;
+    margin-top: 15px;
+  }
+  
+ 
+  .border {
+    background-color: #fff;
+    border-radius: 2px;
+    border: 1px solid #ddd;
+  }
+  
+  .bg-warning {
+    background-color: #ffe68a !important;
+    font-weight: bold;
+  }
+  
+  @media (max-width: 768px) {
+    .row > div {
+      margin-bottom: 30px;
+    }
+  }
+  

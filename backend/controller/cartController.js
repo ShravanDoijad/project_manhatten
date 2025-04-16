@@ -1,7 +1,15 @@
 const {User} = require("../model/authModel")
+const jwt = require("jsonwebtoken");
+const { removeProduct } = require("./productController");
+
 const addCart = async (req, res) => {
   try {
-    const {userId, productId} = req.body
+    const { productId} = req.body
+    const token = req.cookies.token;
+    if (!token) {
+      return res.status(401).json({ message: "Unauthorized" });}
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const userId = decoded._id;
     const userData = await User.findById(userId)
     let cartData = await userData.cartData || {}
 
@@ -33,7 +41,12 @@ const addCart = async (req, res) => {
 }
 const updateCart = async (req, res) => {
   try {
-    const {userId, productId, quantity}= req.body
+    const { productId, quantity}= req.body
+    const token = req.cookies.token;
+    if (!token) {
+      return res.status(401).json({ message: "Unauthorized" });}
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const userId = decoded._id;
     const userData = await User.findById(userId)
     let cartData = await userData.cartData || {}
 
@@ -52,9 +65,14 @@ const updateCart = async (req, res) => {
 
 const getCart = async (req, res) => {
   try {
-    const {userId}=  req.body;
+    const token = req.cookies.token;
+    if (!token) {
+      return res.status(401).json({ message: "Unauthorized" });}
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const userId = decoded._id;
+    
     const user = await User.findById(userId)
-    console.log(user.cartData);
+    
     res.status(200).json(user.cartData)
     
     
@@ -64,5 +82,43 @@ const getCart = async (req, res) => {
   }
 }
 
+const removeCart = async (req, res)=>{
+  try {
+    const {productId} = req.body;
+    const token = req.cookies.token;
+    if (!token) {
+      return res.status(401).json({ message: "Unauthorized" });}
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const userId = decoded._id;
+      const userData = await User.findById(userId);
+      const cartData = userData.cartData
+     if(!cartData[productId]) return res.status(200).json({msg: "Product already removed from cart"})
+      delete cartData[productId]
+     await User.findByIdAndUpdate(userId, {$set: { cartData}})
+      res.status(200).json(cartData)
+  } catch (error) {
+    console.log(error);
+    
+    res.status(501).json({msg: "can't remove the product"})
+  }
+}
 
-module.exports = { addCart, updateCart, getCart}
+const addAddress =  async(req, res) => {
+  try {
+    const {address} = req.body
+    const token = req.cookies.token;
+    if (!token) {
+      return res.status(401).json({ message: "Unauthorized" });}
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const userId = decoded._id;
+    const userData = await User.findById(userId)
+    const addressData = userData.address || {}
+    await userData.save()
+      res.status(200).json(addressData)
+  } catch (error) {
+    res.status(501).json({msg: "can't add address"})
+  }
+}
+
+
+module.exports = { addCart, addAddress, updateCart, getCart, removeCart}

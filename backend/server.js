@@ -11,6 +11,7 @@ const userRouter = require("./routes/userRoute")
 const sellerRouter = require("./routes/sellerRoute")
 const productRouter = require("./routes/productRoute");
 const cartRouter = require('./routes/cartRoute');
+const orderRouter = require('./routes/orderRoute');
 
 app.use(cors({
     origin: ['http://localhost:5173', 'http://localhost:5174'],
@@ -25,6 +26,7 @@ connectToDb()
 app.use("/api", userRouter, sellerRouter)
 app.use("/products", productRouter)
 app.use("/cart", cartRouter)
+app.use("/order", orderRouter)
 const server = require("http").createServer(app)
 
 const io = new Server(server,{
@@ -36,8 +38,13 @@ const io = new Server(server,{
 
 io.on("connection", (socket)=>{
     console.log("soket", socket.id);
+    socket.on("chat", (payload)=>{
+        console.log("payload", payload)
+        io.emit("chat", payload)
+    })
     
 })
+
 
 
 server.listen(3000, () => { console.log('Server is running on port http://localhost:3000') });

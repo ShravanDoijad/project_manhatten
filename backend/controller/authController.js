@@ -6,16 +6,17 @@ const registerUser = async(req, res) => {
   try {
        const errors = validationResult(req)
     if (!errors.isEmpty()) {
-        return res.status(401).json({errors: errors.array()})
+        console.log("errors", errors)
+        return res.status(400).json({errors: errors.array()})
         
     }
     const { name, email, password } = req.body;
 
     if (!name || !email || !password)
-        return res.status(400).json({message: "Please provide all the required fields"})
+        return res.status(400).json({msg: "Please provide all the required fields"})
     else{
     let emailMatch =await User.findOne({email})
-    if (emailMatch) return res.status(401).json({ message: "Email already exists" })
+    if (emailMatch) return res.status(401).json({ msg: "Email already exists" })
     const hashedPassword=  await User.hashPassword(password);
     const user = await User.create({
         name,
@@ -30,7 +31,7 @@ const registerUser = async(req, res) => {
   } catch (error) {
     console.log(error);
     
-    res.status(400).json({message: error})
+    res.status(400).json({msg: error})
     
   }
 }
@@ -82,8 +83,8 @@ const loginSeller =  async(req, res)=>{
                 return res.status(401).json({msg:"invalid email or password"})
             }
             const token = await logUser.generateAuthToken()
-            res.cookie("token", token)   
-            return res.status(200).json({msg:"user logged in", token}) 
+            res.cookie("artistToken", token)   
+            return res.status(200).json({msg:"seller logged in", token}) 
         }
     } catch (error) {
         console.log(error);
@@ -149,8 +150,10 @@ const registerSeller =async(req, res) => {
   const userProfile = async (req, res) => {
     try {
         const token = req.cookies.token
-        const decoaded = await jwt.verify(token, process.env.JWT_SECRET)
-        const userId = decoaded._id
+        const decoded = await jwt.verify(token, process.env.JWT_SECRET)
+        
+        
+        const userId = decoded._id
         const user = await User.findById(userId)
         return res.status(200).json(user)
      
@@ -204,9 +207,31 @@ const registerSeller =async(req, res) => {
         res.status(500).json({msg:"internel server error"})
     }
   }
+
+  const logoutAdmin = async (req, res) => {
+    try {
+        res.clearCookie("adminToken")
+        res.status(200).json({msg:"admin logged out successfully"})
+    } catch (error) {
+        console.log("adminLogout error", error);
+        
+        res.status(500).json({msg:"internel server error"})
+    }
+  }
+
+  const allSellers = async (req, res) => {
+    try {
+        const sellers = await Seller.find()
+        return res.status(200).json(sellers)
+    } catch (error) {
+        console.log("allSellers error", error);
+        
+        res.status(500).json({msg:"internel server error"})
+    }
+  }
   
   
   
 
-module.exports = {registerUser,adminLogin,userProfile, sellerProfile ,logoutSeller, loginUser, loginSeller, registerSeller, logoutUser};
+module.exports = {registerUser,logoutAdmin, allSellers ,adminLogin, userProfile, sellerProfile ,logoutSeller, loginUser, loginSeller, registerSeller, logoutUser};
 

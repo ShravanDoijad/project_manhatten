@@ -12,9 +12,14 @@ const {
   singleProduct,
   addReview,
   getReview,
+  searchProduct,
+  handleApprove,
+  handleReject
 } = require("../controller/productController");
 const upload = require("../middleware/multer");
 const { adminAuth } = require("../middleware/adminAuth");
+const { artistAuth } = require("../middleware/artistAuth");
+
 productRouter.post(
   "/addProduct",
   upload.fields([
@@ -25,15 +30,19 @@ productRouter.post(
   ]),
   addProducts
 );
-productRouter.get("/list", adminAuth, listProducts);
+productRouter.get("/list", artistAuth,  listProducts);
 productRouter.post("/remove", removeProduct);
-productRouter.post("/edit", adminAuth, editProduct);
+productRouter.post("/edit",artistAuth, editProduct);
 productRouter.get("/allProducts", allProducts);
-productRouter.get("/pendingProduct", pendingProduct);
+productRouter.get("/pendingProduct",adminAuth, pendingProduct);
 productRouter.post("/updateProductStatus", updateProductStatus);
 productRouter.get("/getNotification", getNotifications);
 productRouter.get("/singleProduct", singleProduct);
 productRouter.post("/addReview", addReview);
-productRouter.get("/getReview", getReview);
+productRouter.post("/getReview", getReview);
+productRouter.get("/search", searchProduct );
+productRouter.post("/approve", adminAuth,handleApprove );
+productRouter.post("/reject", adminAuth, handleReject );
+
 
 module.exports = productRouter;

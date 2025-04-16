@@ -1,7 +1,8 @@
 const express = require("express")
 const userRouter =  express.Router()
 const {body} = require("express-validator")
-const {registerUser, loginUser, logoutUser, userProfile, adminLogin} = require("../controller/authController")
+const {registerUser, loginUser, logoutUser, userProfile, adminLogin, logoutAdmin, allSellers} = require("../controller/authController")
+const { adminAuth } = require("../middleware/adminAuth")
 
 userRouter.post("/register",
 [body('name').isLength({min: 2}).withMessage("Name must be at least 2 characters long"),
@@ -22,4 +23,8 @@ userRouter.post("/logoutuser",
 userRouter.get("/userprofile", userProfile)
 
 userRouter.post("/adminlogin", adminLogin)
- module.exports = userRouter   
+
+userRouter.post("/logoutAdmin",logoutAdmin)
+
+userRouter.get("/sellers", adminAuth, allSellers)
+module.exports = userRouter   
