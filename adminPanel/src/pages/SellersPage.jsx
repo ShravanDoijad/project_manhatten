@@ -7,10 +7,10 @@ import { useState, useEffect } from "react";
 const SellersPage = () => {
   const [sellers, setSellers] = useState([]);
   const [products, setproducts] = useState([])
-
+  const backendUrl = import.meta.env.VITE_BACKEND_URL
   const getProducts =  async () => {
     try {
-      const response = await fetch("http://localhost:3000/products/pendingProduct", {
+      const response = await fetch(`${backendUrl}/products/pendingProduct`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"

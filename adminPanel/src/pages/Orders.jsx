@@ -4,10 +4,10 @@ import { toast } from 'react-toastify';
 const Orders = () => {
   const [orders, setorders] = useState([]);
   const [status, setstatus] = useState("")
-  
+  const backendUrl = import.meta.env.VITE_BACKEND_URL
   const getOrders = async () => {
     try {
-      const response = await fetch("http://localhost:3000/order/getOrders", {
+      const response = await fetch(`${backendUrl}/order/getOrders`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

@@ -9,9 +9,10 @@ const Login = ({token}) => {
   const [password, setpassword] = useState('')
   
   const submitForm = async (e) => {
+    const backendUrl = import.meta.env.VITE_BACKEND_URL
     e.preventDefault()
     try {
-      const res= await fetch("http://localhost:3000/api/adminlogin", {
+      const res= await fetch(`${backendUrl}/api/adminlogin`, {
         method: "POST",
         headers: {
           'Content-type': "application/json"
