@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 const SellersPage = () => {
   const [sellers, setSellers] = useState([]);
   const [products, setproducts] = useState([])
+
   const getProducts =  async () => {
     try {
       const response = await fetch("http://localhost:3000/products/pendingProduct", {

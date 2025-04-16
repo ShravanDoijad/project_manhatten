@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useContext } from "react";
 import { ShopContext } from "../contexts/ShopContext";
 import { Link, useNavigate } from "react-router-dom";
-import {  ShoppingBag, Tags } from "lucide-react";
+import {  ShoppingBag, Tags, Folders, Briefcase } from "lucide-react";
 import axios from "axios";
 
 import { toast } from "react-toastify";
@@ -135,7 +135,14 @@ export const Navbar = () => {
                     <FaUser /> {name}
                     
                   </div>
-                  
+                  {token?
+                  <Link
+                    to="/myOrders"
+                    className="flex items-center gap-2 text-gray-700 py-2 hover:text-blue-600"
+                  >
+                    <Briefcase /> myOrders
+                  </Link>:""
+                  }
                   <Link
                     to="/cart"
                     className="flex items-center gap-2 text-gray-700 py-2 hover:text-blue-600"
