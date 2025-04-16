@@ -14,7 +14,7 @@ const cartRouter = require('./routes/cartRoute');
 const orderRouter = require('./routes/orderRoute');
 
 app.use(cors({
-    origin: ['https://project-manhatten-frontend.vercel.app', 'http://localhost:5174'],
+    origin: ['https://project-manhatten-frontend.vercel.app', 'https://project-manhatten-adminpanel.vercel.app'],
     credentials:true
 }
     
@@ -31,7 +31,7 @@ const server = require("http").createServer(app)
 
 const io = new Server(server,{
     cors: {
-        origin: ['https://project-manhatten-frontend.vercel.app', 'http://localhost:5174'],
+        origin: ['https://project-manhatten-frontend.vercel.app', 'https://project-manhatten-adminpanel.vercel.app'],
         credentials: true
     }
 })
