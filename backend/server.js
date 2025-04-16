@@ -48,21 +48,21 @@ app.use("/cart", cartRouter)
 app.use("/order", orderRouter)
 const server = require("http").createServer(app)
 
-const io = new Server(server,{
-    cors: {
-        origin: allowedOrigins,
-        credentials: true
-    }
-})
+// const io = new Server(server,{
+//     cors: {
+//         origin: allowedOrigins,
+//         credentials: true
+//     }
+// })
 
-io.on("connection", (socket)=>{
-    console.log("soket", socket.id);
-    socket.on("chat", (payload)=>{
-        console.log("payload", payload)
-        io.emit("chat", payload)
-    })
+// io.on("connection", (socket)=>{
+//     console.log("soket", socket.id);
+//     socket.on("chat", (payload)=>{
+//         console.log("payload", payload)
+//         io.emit("chat", payload)
+//     })
     
-})
+// })
 
 
 
