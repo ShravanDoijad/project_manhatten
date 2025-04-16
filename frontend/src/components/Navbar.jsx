@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import webicon1 from "../assets/Images/webicon1.jpg";
 import "../assets/css/Home.css";
-import "../assets/css/Navbar.CSS";
+import "../assets/css/Navbar.css";
 import { useState } from "react";
 
 import { useContext } from "react";
