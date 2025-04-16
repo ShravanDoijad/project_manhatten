@@ -14,19 +14,32 @@ const cartRouter = require('./routes/cartRoute');
 const orderRouter = require('./routes/orderRoute');
 
 
+
+
+const allowedOrigins = [
+  "https://project-manhatten-frontend.vercel.app",
+  "https://project-manhatten-adminpanel.vercel.app"
+];
+
 app.use(cors({
-    origin: true,
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"]
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("CORS not allowed for this origin: " + origin));
+    }
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 
-app.options('*', cors({
-    origin: true,
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+app.options("*", cors({
+  origin: allowedOrigins,
+  credentials: true
 }));
+
 
 app.use(express.json())
 app.use(cookieParser())
