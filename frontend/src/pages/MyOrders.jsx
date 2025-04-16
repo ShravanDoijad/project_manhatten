@@ -5,12 +5,12 @@ import { ShopContext } from "../contexts/ShopContext";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 export const MyOrders = () => {
-  const { products } = useContext(ShopContext);
+  const { products, backendUrl } = useContext(ShopContext);
   const [orders, setorders] = useState([]);
 
   const getOrders = async () => {
     try {
-      const response = await fetch("http://localhost:3000/order/userOrders", {
+      const response = await fetch(`${backendUrl}order/userOrders`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

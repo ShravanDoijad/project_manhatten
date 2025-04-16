@@ -3,13 +3,15 @@ import { toast } from "react-toastify";
 import { useState, useEffect } from "react";
 import { Bell } from "lucide-react";
 import profile from "../assets/Images/Admin.png";
+import { useContext } from "react";
+import { ShopContext } from "../contexts/ShopContext";
 const Notification = () => {
   const [notification, setnotification] = useState([]);
-
+const {backendUrl} = useContext(ShopContext)
   const getNotification = async () => {
     try {
       const res = await fetch(
-        "http://localhost:3000/products/getNotification",
+        `${backendUrl}products/getNotification`,
         {
           method: "GET",
           headers: {

@@ -29,7 +29,7 @@ const SellersPage = () => {
 
   const getAllSellers = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/sellers", {
+      const response = await fetch(`${backendUrl}/api/sellers`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

@@ -39,7 +39,7 @@ const ProductsPage = () => {
 
   const removeProduct = async (productId) => {
     try {
-      const response = await fetch(`http://localhost:3000/products/remove`, {
+      const response = await fetch(`${backendUrl}/products/remove`, {
         method: "post",
         headers: {
           "Content-Type": "application/json"

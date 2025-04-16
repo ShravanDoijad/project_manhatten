@@ -3,6 +3,8 @@ import Cookies from "js-cookie";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useContext } from "react";
+import { ShopContext } from "../contexts/ShopContext";
 import uploadImg from "../assets/Images/upload_area.png";
 import Text from "../components/Text";
 const AddProduct = () => {
@@ -10,6 +12,8 @@ const AddProduct = () => {
   const [image2, setimage2] = useState("");
   const [image3, setimage3] = useState("");
   const [image4, setimage4] = useState("");
+
+  const {backendUrl} = useContext(ShopContext)
 
   const [formData, setFormData] = useState({
     name: "",
@@ -57,7 +61,7 @@ const AddProduct = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        "http://localhost:3000/products/addProduct",
+        `${backendUrl}products/addProduct`,
         {
           method: "POST",
 

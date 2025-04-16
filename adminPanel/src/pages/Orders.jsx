@@ -32,7 +32,7 @@ const Orders = () => {
   const statusChange = async(orderId, status ) => {
      
     try {
-      const response = await fetch("http://localhost:3000/order/changeStatus",{
+      const response = await fetch(`${backendUrl}/order/changeStatus`,{
         method: "POST",
         headers: {
           "Content-Type": "application/json",

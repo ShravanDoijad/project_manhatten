@@ -36,7 +36,7 @@ const AuthenticatePage = () => {
 
     const handleApprove = async (productId) => {
       try {
-        const res =  await fetch(`http://localhost:3000/products/approve`, {
+        const res =  await fetch(`${backendUrl}/products/approve`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -62,7 +62,7 @@ const AuthenticatePage = () => {
 
     const handleReject = async (productId) => {
       try {
-        const res = await fetch(`http://localhost:3000/products/reject`, {
+        const res = await fetch(`${backendUrl}/products/reject`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"

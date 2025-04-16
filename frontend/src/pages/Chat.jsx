@@ -10,11 +10,11 @@ const Chat = () => {
     const socket = useRef(null)
     const navigate = useNavigate()
     const [msg, setmsg] = useState("");
-    const {artistToken, name}= useContext(ShopContext)
+    const {artistToken, name, backendUrl}= useContext(ShopContext)
     const [chat, setchat] = useState([])
     
     useEffect(()=>{
-        socket.current =  io("http://localhost:3000")
+        socket.current =  io(`${backendUrl}`)
         socket.current.on("chat", (payload)=>{
             console.log("payload", payload)
             setchat((chat)=>[...chat, payload])

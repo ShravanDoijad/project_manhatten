@@ -5,7 +5,7 @@ import {CheckCheckIcon, CircleX} from 'lucide-react'
 import Text from '../components/Text'
 import { toast } from 'react-toastify'
 const ListProduct = () => {
-    const { products } = useContext(ShopContext)
+    const { products, backendUrl } = useContext(ShopContext)
     const [sellerProduct, setsellerProduct] = useState([])
     const [editProduct, seteditProduct] = useState({
         price: "",
@@ -29,7 +29,7 @@ const ListProduct = () => {
             e.preventDefault()
             
         try {
-            const response = await fetch("http://localhost:3000/products/edit", {
+            const response = await fetch(`${backendUrl}/products/edit`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -53,7 +53,7 @@ const ListProduct = () => {
 
     const getsellerProduct = async () => {
         try {
-            const response = await fetch("http://localhost:3000/products/list", {
+            const response = await fetch(`${backendUrl}/products/list`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -77,7 +77,7 @@ const ListProduct = () => {
     const handleDelete = async (productId) => {
 
         try {
-            const response = await fetch(`http://localhost:3000/products/remove`, {
+            const response = await fetch(`${backendUrl}products/remove`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
