@@ -1,6 +1,7 @@
 import React from "react";
 import  { useEffect, useState } from "react";
-
+import {useContext} from "react"
+import { ShopContext } from "../../../frontend/src/contexts/ShopContext";
 
  
 import {toast} from "react-toastify";
@@ -36,7 +37,7 @@ const AuthenticatePage = () => {
 
     const handleApprove = async (productId) => {
       try {
-        const res =  await fetch(`${backendUrl}/products/approve`, {
+        const res =  await fetch(`http://localhost:3000/products/approve`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -62,7 +63,7 @@ const AuthenticatePage = () => {
 
     const handleReject = async (productId) => {
       try {
-        const res = await fetch(`${backendUrl}/products/reject`, {
+        const res = await fetch(`http://localhost:3000/products/reject`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"

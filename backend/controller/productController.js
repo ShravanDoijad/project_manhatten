@@ -151,7 +151,7 @@ const allProducts = async (req, res) => {
     res.status(200).json(products);
   } catch (error) {
     console.log("error", error);
-    res.status(500).json({ msg: "internel server error" });
+    res.status(500).json({ msg: "internel server error", error });
   }
 };
 

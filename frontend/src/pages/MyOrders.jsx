@@ -64,7 +64,7 @@ export const MyOrders = () => {
                   />
                 </td>
                 <td className="py-3 px-2 text-amber-800 ">{product.name}</td>
-                <td className="py-3 px-2">₹{product.price}</td>
+                <td className="py-3 px-2">₹{product.discountPrice}</td>
                 <td className="py-3 px-2">{product.quantity}</td>
                 <td className="py-3 px-2">
                   <span

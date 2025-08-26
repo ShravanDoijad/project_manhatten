@@ -18,7 +18,9 @@ const orderRouter = require('./routes/orderRoute');
 
 const allowedOrigins = [
   "https://project-manhatten-frontend.vercel.app",
-  "https://project-manhatten-adminpanel.vercel.app"
+  "https://project-manhatten-adminpanel.vercel.app",
+  "http://localhost:5173",
+  "http://localhost:5174"
 ];
 
 app.use(cors({

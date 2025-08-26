@@ -19,6 +19,7 @@ import { MyOrders } from './pages/MyOrders'
 import Verify from './pages/Verify'
 import io from "socket.io-client"
 import Footer from './components/Footer'
+
 function App() {
 
 
@@ -42,6 +43,7 @@ function App() {
       <Route path='/checkout' element={<Checkout/>} />
       <Route path='/myOrders' element={<MyOrders/>} />
       <Route path='/verify' element={<Verify/>}/>
+      
       <Route path='/artist/*' element={<Artist/>}/>
     </Routes>
     <Footer/>

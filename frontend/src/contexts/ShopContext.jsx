@@ -2,6 +2,7 @@ import { createContext, useEffect } from "react";
 
 export const ShopContext = createContext();
 import Cookies from "js-cookie"
+import {toast} from "react-toastify"
 import { useState } from "react";
 const ShopContextProvider = (props) => {
     let backendUrl = import.meta.env.VITE_BACKEND_URL

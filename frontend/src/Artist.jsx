@@ -6,7 +6,7 @@ import HelpAndSupport from "./pages/HelpAndSupport";
 import Notification from "./pages/Notification";
 import ListProduct from "./pages/ListProduct";
 import {ArtistHome} from "./pages/ArtistHome"
-
+import Chat from "./pages/Chat"
 const Artist = () => {
   return (
     <div className="w-full  overflow-hidden min-h-[80%] bg-[#F5E5D6] flex   pt-22 px-10">
@@ -42,9 +42,9 @@ const Artist = () => {
         >
           HELP AND SUPPORT
         </Link>
-        {/* <Link to={"/artist/chat"} className="flex justify-center w-40 h-10 text-center mx-auto mt-100 bg-green-600 items-center rounded-2xl shadow-xl  text-white font-bold hover:text-xl" >
+        <Link to={"/artist/chat"} className="flex justify-center w-40 h-10 text-center mx-auto mt-100 bg-green-600 items-center rounded-2xl shadow-xl  text-white font-bold hover:text-xl" >
           Chat with Admin
-        </Link> */}
+        </Link>
       </div>
     
       <Routes className="w-3/5 h-screen bg-black z-10">
@@ -53,6 +53,7 @@ const Artist = () => {
         <Route path="/notification" element={<Notification/>} />
         <Route path="/listProduct" element={<ListProduct />} />
         <Route path="/helpSupport" element={<HelpAndSupport />} />
+        <Route path="/chat" element={<Chat/>} />
        
       </Routes>
     </div>
